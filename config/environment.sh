@@ -3,5 +3,5 @@
 # korvaa tämä omalla käyttäjätunnuksellasi
 USERNAME="lilkettu"
 # korvaa tämä haluamallasi kansion nimellä
-PROJECT_FOLDER="tsoha"
-# sovelluksesi tulee sijaitsemaan osoitteessa lilkettu.users.cs.helsinki.fi/tsoha
+PROJECT_FOLDER="ekeittokirja"
+# sovelluksesi tulee sijaitsemaan osoitteessa lilkettu.users.cs.helsinki.fi/ekeittokirja
