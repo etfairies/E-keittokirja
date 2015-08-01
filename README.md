@@ -8,3 +8,10 @@ Yleisiä linkkejä:
 ## Työn aihe
 
 Laita tähän aihekuvaus tai [linkki valmiiseen aiheeseen](http://advancedkittenry.github.io/suunnittelu_ja_tyoymparisto/aiheet/Elektroninen_keittokirja.html) 
+
+## Linkit sovelluksen sivuille
+
+* [Linkki listaussivulle](https://lilkettu.users.cs.helsinki.fi/ekeittokirja/recipe)
+* [Linkki reseptin esittelysivulle](https://lilkettu.users.cs.helsinki.fi/ekeittokirja/recipe/1)
+* [Linkki reseptin muokkaussivulle](https://lilkettu.users.cs.helsinki.fi/ekeittokirja/recipe/1/edit)
+* [Linkki kirjautumissivulle](https://lilkettu.users.cs.helsinki.fi/ekeittokirja/login)

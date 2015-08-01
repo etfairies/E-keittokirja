@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+{% block content %}
+
+<h1>Muokkaa reseptiä Vegaaniset letut</h1>
+<form>
+    <div class="form-group">
+        <label>Nimi</label>
+        <input class="form-control" value="Vegaaniset letut" type="text">
+    </div>
+    <div class="form-group">
+        <label>Ruokalaji</label>
+        <input class="form-control" value="Jälkiruoka" type="text">
+    </div>
+    <div class="form-group">
+        <label>Erityisruokavalio</label>
+        <input class="form-control" value="Maidoton, munaton" type="text">
+    </div>
+    <div class="form-group">
+        <label>Annosmäärä</label>
+        <input class="form-control" value="4" type="text">
+    </div>   
+    <div class="form-group">
+        <label>Raaka-aineet</label>
+        <textarea class="form-control">7 dl soijamaitoa tai muuta kasvimaitoa, 4 dl vehnäjauhoja, 2 rkl perunajauhoja, vaniljasokeria, ripaus suolaa </textarea>
+    </div>
+    <div class="form-group">
+        <label>Ohjeet</label>
+        <textarea class="form-control">Sekoita aineet ja paista letut öljytyllä pannulla.</textarea>
+    </div>
+
+    <div class="form-group">
+        <button type="submit" class="btn btn-primary">Tallenna</button>
+    </div>
+</form>
+
+{% endblock %}

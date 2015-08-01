@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+{% block content %}
+<h1>E-keittokirja</h1>
+
+<p>
+    <a href="#" class="btn btn-default">Lisää resepti</a>
+</p>
+
+<table class="table table-condensed">
+    <thead>
+        <tr>
+            <th>Nimi</th>
+            <th>Ruokalaji</th>
+            <th>Erityisruokavalio</th>
+            <th>Lisäyspäivä</th>
+            <th></th>
+        </tr>
+    </thead>
+    
+    <tbody>
+        <tr>
+            <td><a href="#">Vegaaniset letut</a></td>
+            <td>Jälkiruoka</td>
+            <td>Maidoton, munaton</td>
+            <td>1.8.2015</td>
+            <td><a class='btn btn-default btn-sm btn-info' href='#'>Muokkaa</a></td>
+        </tr>
+    </tbody>
+</table>
+{% endblock %}
