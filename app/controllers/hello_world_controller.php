@@ -1,5 +1,6 @@
 <?php
 
+
   class HelloWorldController extends BaseController{
 
     public static function index(){
@@ -10,7 +11,11 @@
 
     public static function sandbox(){
       // Testaa koodiasi täällä
-      View::make('helloworld.html');
+      $wokki = Resepti::find(1);
+      $reseptit = Resepti::all();
+      
+      Kint::dump($reseptit);
+      Kint::dump($wokki);
     }
     
     public static function recipe_list(){

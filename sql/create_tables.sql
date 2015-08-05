@@ -5,8 +5,8 @@ ruokalaji varchar(30) NOT NULL,
 luokka varchar(20),
 annosmaara INTEGER,
 lahde varchar(400),
-kuvan_lahde varchar(600),
-lisayspaiva DATE
+kuva varchar(600),
+lisatty DATE
 );
 
 CREATE TABLE Valmistusvaihe(
@@ -23,7 +23,7 @@ proteiineja DECIMAL,
 rasvaa DECIMAL
 );
 
-CREATE TABLE Reseptin_ainesosa(
+CREATE TABLE Ainesosa(
 resepti_id SERIAL REFERENCES Resepti(id),
 maara varchar(15),
 raaka_aine varchar(20) REFERENCES Raaka_aine(nimi)
