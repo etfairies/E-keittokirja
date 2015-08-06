@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+{% block content %}
+<h1>{{recipe.ruokalaji}}<small> {{recipe.luokka}}</small></h1>
+<p>
+    <a href="#" class="btn btn-default">Muokkaa</a>
+    <button class="btn btn-danger">Poista</button> 
+</p>
+
+<img alt="{{recipe.ruokalaji}}" width="300" class="img-thumbnail" src="{{recipe.kuva}}">
+
+<h2>Ainesosat</h2>
+<h5> {{recipe.annosmaara}} 
+    {% if recipe.annosmaara == 1 %} annos
+{% else %} annosta
+{% endif %}</h5>
+
+<ul>
+    <li></li>  
+</ul>
+
+<h2>Ohjeet</h2>
+
+<ol>
+<li></li>
+</ol>
+<br>
+<footer><strong>Lähde: </strong> <a href="{{recipe.lahde}}">{{recipe.lahde}}</a><br>
+    <strong>Lisätty: </strong>{{recipe.lisatty}}</footer>
+{% endblock %}

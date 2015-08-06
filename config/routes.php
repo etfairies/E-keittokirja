@@ -1,7 +1,7 @@
 <?php
 
   $routes->get('/', function() {
-    HelloWorldController::index();
+    RecipeController::index();
   });
 
   $routes->get('/hiekkalaatikko', function() {
@@ -9,11 +9,11 @@
   });
   
   $routes->get('/recipe', function() {
-  HelloWorldController::recipe_list();
+      RecipeController::index();
   });
   
-  $routes->get('/recipe/1', function() {
-  HelloWorldController::recipe_show();
+  $routes->get('/recipe/:id', function($id) {
+  RecipeController::show($id);
   });
   
   $routes->get('/recipe/1/edit', function() {

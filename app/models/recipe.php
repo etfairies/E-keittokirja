@@ -1,21 +1,21 @@
 <?php
 
-class Resepti extends BaseModel{
-    
+class Resepti extends BaseModel {
+
     public $id, $ruokalaji, $luokka, $annosmaara, $lahde, $kuva, $lisatty;
-    
+
     public function __construct($attributes) {
         parent::__construct($attributes);
     }
-    
-    public static function all(){
+
+    public static function all() {
         $query = DB::connection()->prepare('SELECT * FROM Resepti');
         $query->execute();
-        
+
         $rows = $query->fetchAll();
         $reseptit = array();
-        
-        foreach ($rows as $row){
+
+        foreach ($rows as $row) {
             $reseptit[] = new Resepti(array(
                 'id' => $row['id'],
                 'ruokalaji' => $row['ruokalaji'],
@@ -26,18 +26,18 @@ class Resepti extends BaseModel{
                 'lisatty' => $row['lisatty']
             ));
         }
-        
+
         return $reseptit;
     }
-    
-    public static function find($id){
+
+    public static function find($id) {
         $query = DB::connection()->prepare('SELECT * FROM Resepti WHERE id = :id LIMIT 1');
         $query->execute(array('id' => $id));
         $row = $query->fetch();
-        
-        if($row){
+
+        if ($row) {
             $resepti = new Resepti(array(
-               'id' => $row['id'],
+                'id' => $row['id'],
                 'ruokalaji' => $row['ruokalaji'],
                 'luokka' => $row['luokka'],
                 'annosmaara' => $row['annosmaara'],
@@ -45,9 +45,26 @@ class Resepti extends BaseModel{
                 'kuva' => $row['kuva'],
                 'lisatty' => $row['lisatty']
             ));
-            
+
             return $resepti;
         }
         return null;
     }
+
+    public function save() {
+        $query = DB::connection()->prepare
+                ('INSERT INTO Resepti (ruokalaji, luokka, annosmaara, lahde, kuva, lisatty) VALUES (:ruokalaji, :luokka, :annosmaara, :lahde, :kuva, :lisatty) RETURNING id');
+
+        $query->execute(array(
+            'ruokalaji' => $this->ruokalaji,
+            'luokka' => $this->luokka,
+            'annosmaara' => $this->annosmaara,
+            'lahde' => $this->lahde,
+            'kuva' => $this->kuva,
+            'lisatty' => $this->lisatty));
+
+        $row = $query->fetch();
+        $this->id = $row['id'];
+    }
+
 }
