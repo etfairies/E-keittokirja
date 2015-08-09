@@ -12,6 +12,13 @@
       RecipeController::index();
   });
   
+  $routes->post('/recipe', function(){
+      RecipeController::store();
+  });
+  $routes->get('/recipe/new', function(){
+      RecipeController::create();
+  });
+  
   $routes->get('/recipe/:id', function($id) {
   RecipeController::show($id);
   });
@@ -23,4 +30,6 @@
   $routes->get('/login', function() {
   HelloWorldController::login();
   });
+  
+  
   
