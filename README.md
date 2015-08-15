@@ -17,5 +17,5 @@ Yleisiä linkkejä:
 * [Linkki kirjautumissivulle](https://lilkettu.users.cs.helsinki.fi/ekeittokirja/login)
 
 ## Tunnukset sovellukseen:
-Tunnus: kokkailija
-Salasana: muffinssi
+* Tunnus: kokkailija
+* Salasana: muffinssi
