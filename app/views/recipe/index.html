@@ -1,9 +1,10 @@
 {% extends "base.html" %}
 {% block content %}
 <h1>E-keittokirja</h1>
+<h2>Reseptit</h2>
 
 {% if message %}
-<p>{{message}}</p>
+<p class="alert alert-success">{{message}}</p>
 {% endif %}
 
 {% if user_logged_in %}

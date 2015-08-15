@@ -13,10 +13,13 @@ class IngredientController extends BaseController {
     }
 
     public static function create() {
+        self::check_logged_in();
         View::make('ingredient/new.html');
     }
 
     public static function store() {
+        self::check_logged_in();
+        
         $params = $_POST;
 
         $attributes = array(
@@ -38,12 +41,16 @@ class IngredientController extends BaseController {
         }
     }
     
-    public static function edit($nimi){
+    public static function edit($nimi){ 
+        self::check_logged_in();
+        
         $aine = Raaka_aine::find($nimi);
         View::make('ingredient/edit.html', array('attributes' => $aine));
     }
     
     public static function update($nimi){
+        self::check_logged_in();
+        
         $params = $_POST;
         
         $attributes = array(
@@ -67,6 +74,8 @@ class IngredientController extends BaseController {
     }
     
     public static function destroy($nimi){
+        self::check_logged_in();
+        
         $aine = new Raaka_aine(array('nimi' => $nimi));
         $aine->destroy();
         

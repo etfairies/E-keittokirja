@@ -6,6 +6,10 @@
 <p class="alert alert-danger">{{error}}</p>
 {% endif %}
 
+{% if message %}
+<p class="alert alert-success">{{message}}</p>
+{% endif %}
+
 <form method="post" action="{{base_path}}/login">
     <div class="form-group">
         <label>Käyttäjätunnus</label>
