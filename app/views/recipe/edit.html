@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 {% block content %}
 
-<h1>Lisää uusi resepti</h1>
+<h1>Muokkaa reseptiä {{recipe.ruokalaji}}</h1>
 
 {% if errors %}
 <div class="alert alert-danger">
@@ -13,16 +13,16 @@
 </div>
 {% endif %}
 
-<form method="post" action="{{base_path}}/recipe">
+<form method="post" action="{{base_path}}/recipe/{{attributes.id}}/edit">
     <div class="form-group">
         <label>Ruokalaji</label>
-        <input name="ruokalaji" class="form-control" type="text" value="{{attributes.ruokalaji}}">
+        <input name="ruokalaji" class="form-control" value="{{attributes.ruokalaji}}" type="text">
     </div>
 
     <div class="form-group">
         <label>Luokka</label><br>
         <select name="luokka">
-            <option>Valitse...</option>
+            <option value="{{attributes.luokka}}">{{attributes.luokka}}</option>
             <option value="Alkuruoat">Alkuruoat</option>
             <option value="Pääruoat">Pääruoat</option>
             <option value="Jälkiruoat">Jälkiruoat</option>
@@ -77,7 +77,7 @@
     </div>
 
     <div class="form-group">
-        <button type="submit" class="btn btn-primary">Lisää</button>
+        <button type="submit" class="btn btn-primary">Tallenna</button>
     </div>
 </form>
 {% endblock %}

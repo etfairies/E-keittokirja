@@ -15,3 +15,7 @@ Yleisiä linkkejä:
 * [Linkki reseptin esittelysivulle](https://lilkettu.users.cs.helsinki.fi/ekeittokirja/recipe/1)
 * [Linkki reseptin muokkaussivulle](https://lilkettu.users.cs.helsinki.fi/ekeittokirja/recipe/1/edit)
 * [Linkki kirjautumissivulle](https://lilkettu.users.cs.helsinki.fi/ekeittokirja/login)
+
+## Tunnukset sovellukseen:
+Tunnus: kokkailija
+Salasana: muffinssi

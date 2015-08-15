@@ -11,11 +11,13 @@
 
     public static function sandbox(){
       // Testaa koodiasi täällä
-      $wokki = Resepti::find(1);
-      $reseptit = Resepti::all();
+      $wokki = new Resepti(array(
+          'ruokalaji' => '',
+          'annosmaara' => ''
+      ));
+      $errors = $wokki->errors();
       
-      Kint::dump($reseptit);
-      Kint::dump($wokki);
+      Kint::dump($errors);
     }
     
     public static function recipe_list(){

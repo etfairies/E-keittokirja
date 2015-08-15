@@ -7,7 +7,7 @@ Yleisiä linkkejä:
 
 ## Työn aihe
 
-Laita tähän aihekuvaus tai [linkki valmiiseen aiheeseen](http://advancedkittenry.github.io/suunnittelu_ja_tyoymparisto/aiheet/Elektroninen_keittokirja.html) 
+[Linkki valmiiseen aiheeseen](http://advancedkittenry.github.io/suunnittelu_ja_tyoymparisto/aiheet/Elektroninen_keittokirja.html) 
 
 ## Linkit sovelluksen sivuille
 

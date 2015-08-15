@@ -1,35 +1,93 @@
 <?php
 
-  $routes->get('/', function() {
-    RecipeController::index();
-  });
+//Reseptin reitit
 
-  $routes->get('/hiekkalaatikko', function() {
+$routes->get('/', function() {
+    RecipeController::index();
+});
+
+$routes->get('/recipe', function() {
+    RecipeController::index();
+});
+
+$routes->post('/recipe', function() {
+    RecipeController::store();
+});
+$routes->get('/recipe/new', function() {
+    RecipeController::create();
+});
+
+$routes->get('/recipe/:id', function($id) {
+    RecipeController::show($id);
+});
+
+$routes->get('/recipe/:id/edit', function($id){
+    RecipeController::edit($id);
+});
+
+$routes->post('/recipe/:id/edit', function($id){
+    RecipeController::update($id); 
+});
+
+$routes->post('/recipe/:id/destroy', function($id){
+    RecipeController::destroy($id); 
+});
+
+
+// Raaka-aineen reitit
+
+$routes->get('/ingredient', function() {
+    IngredientController::index();
+});
+
+$routes->post('/ingredient', function() {
+    IngredientController::store();
+});
+
+$routes->get('/ingredient/new', function() {
+    IngredientController::create();
+});
+
+$routes->get('/ingredient/:nimi', function($nimi) {
+    IngredientController::show($nimi);
+});
+
+$routes->get('/ingredient/:nimi/edit', function($nimi){
+    IngredientController::edit($nimi); 
+});
+
+$routes->post('/ingredient/:nimi/edit', function($nimi){
+    IngredientController::update($nimi); 
+});
+
+$routes->post('/ingredient/:nimi/destroy', function($nimi){
+    IngredientController::destroy($nimi);
+});
+
+// Kirjautumisreitit
+
+$routes->get('/login', function(){
+    UserController::login();
+});
+
+$routes->post('/login', function(){
+    UserController::handle_login();
+});
+
+
+// HelloWorld -reitit
+
+$routes->get('/login', function() {
+    HelloWorldController::login();
+});
+
+$routes->get('/recipe/1/edit', function() {
+    HelloWorldController::recipe_edit();
+});
+
+$routes->get('/hiekkalaatikko', function() {
     HelloWorldController::sandbox();
-  });
-  
-  $routes->get('/recipe', function() {
-      RecipeController::index();
-  });
-  
-  $routes->post('/recipe', function(){
-      RecipeController::store();
-  });
-  $routes->get('/recipe/new', function(){
-      RecipeController::create();
-  });
-  
-  $routes->get('/recipe/:id', function($id) {
-  RecipeController::show($id);
-  });
-  
-  $routes->get('/recipe/1/edit', function() {
-  HelloWorldController::recipe_edit();
-  });
-  
-  $routes->get('/login', function() {
-  HelloWorldController::login();
-  });
-  
-  
-  
+});
+
+
+

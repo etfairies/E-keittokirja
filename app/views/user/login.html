@@ -2,6 +2,10 @@
 {% block content %}
 <h1>Kirjaudu sisään</h1>
 
+{% if error %}
+<p class="alert alert-danger">{{error}}</p>
+{% endif %}
+
 <form method="post" action="{{base_path}}/login">
     <div class="form-group">
         <label>Käyttäjätunnus</label>

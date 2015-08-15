@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+{% block content %}
+{% import "macros/forms.html" as forms %}
+
+{% if message %}
+<div class="alert alert-success">
+    {{message}}
+</div>
+{% endif %}
+
+<h1>{{ingredient.nimi}}</h1>
+
+{% if user_logged_in %}
+<a href="{{base_path}}/ingredient/{{ingredient.nimi}}/edit" class="btn btn-default">Muokkaa</a>
+{{forms.destroy_button("#{base_path}/ingredient/#{ingredient.nimi}/destroy")}}
+{% endif %}
+<br>
+
+<h2>Koostumus / 100 g</h2>
+<table class="table table-bordered">
+    <tr>
+        <td>Energiaa</td>
+        <td>Hiilihydraatteja</td>
+        <td>Proteiineja</td>
+        <td>Rasvaa</td>
+    </tr>
+    <tr>
+        <td>{{ingredient.energiaa}} kcal</td>
+        <td>{{ingredient.hiilihydraatteja}} g</td>
+        <td>{{ingredient.proteiineja}} g</td>
+        <td>{{ingredient.rasvaa}} g</td>
+    </tr>
+</table>
+{% endblock %}

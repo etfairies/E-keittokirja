@@ -1,23 +1,30 @@
 {% extends "base.html" %}
 {% block content %}
+{% import "macros/forms.html" as forms %}
 
+{% if message %}
 <div class="alert alert-success">
-  {{message}}
+    {{message}}
 </div>
+{% endif %}
 
 <h1>{{recipe.ruokalaji}}<small> {{recipe.luokka}}</small></h1>
-<p>
-    <a href="#" class="btn btn-default">Muokkaa</a>
-    <button class="btn btn-danger">Poista</button> 
-</p>
+
+{% if user_logged_in %}
+<a href="{{base_path}}/recipe/{{recipe.id}}/edit" class="btn btn-default">Muokkaa</a>
+
+{{forms.destroy_button("#{base_path}/recipe/#{recipe.id}/destroy")}}
+{% endif %}
+<br>
+
 
 <img alt="{{recipe.ruokalaji}}" width="300" class="img-thumbnail" src="{{recipe.kuva}}">
 
 <h2>Ainesosat</h2>
 <h5> {{recipe.annosmaara}} 
     {% if recipe.annosmaara == 1 %} annos
-{% else %} annosta
-{% endif %}</h5>
+    {% else %} annosta
+    {% endif %}</h5>
 
 <ul>
     <li></li>  
@@ -26,7 +33,7 @@
 <h2>Ohjeet</h2>
 
 <ol>
-<li></li>
+    <li></li>
 </ol>
 <br>
 <footer><strong>Lähde: </strong> <a href="{{recipe.lahde}}">{{recipe.lahde}}</a><br>

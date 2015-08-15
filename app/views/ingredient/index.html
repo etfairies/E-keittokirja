@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+{% block content %}
+<h1>E-keittokirja</h1>
+
+{% if user_logged_in %}
+<p>
+    <a href="{{base_path}}/ingredient/new" class="btn btn-default">Lisää raaka-aine</a>
+</p>
+{% endif %}
+
+<table class="table table-condensed">
+    <thead>
+        <tr>
+            <th>Nimi</th>
+            <th>Energiaa</th>
+            <th>Hiilihydraatteja</th>
+            <th>Proteiineja</th>
+            <th>Rasvaa</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        {% for ingredient in ingredients %}
+        <tr>
+            <td><a href="{{base_path}}/ingredient/{{ingredient.nimi}}">{{ingredient.nimi}}</a></td>
+            <td>{{ingredient.energiaa}}</td>
+            <td>{{ingredient.hiilihydraatteja}}</td>
+            <td>{{ingredient.proteiineja}}</td>
+            <td>{{ingredient.rasvaa}}</td>
+            {% if user_logged_in %}
+            <td><a class='btn btn-default btn-sm btn-info' href='{{base_path}}/ingredient/{{ingredient.nimi}}/edit'>Muokkaa</a></td>
+            {% endif %}
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

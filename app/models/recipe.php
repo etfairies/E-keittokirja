@@ -6,6 +6,7 @@ class Resepti extends BaseModel {
 
     public function __construct($attributes) {
         parent::__construct($attributes);
+        $this->validators = array('validate_ruokalaji', 'validate_luokka', 'validate_annosmaara');
     }
 
     public static function all() {
@@ -53,7 +54,7 @@ class Resepti extends BaseModel {
 
     public function save() {
         $query = DB::connection()->prepare
-                ('INSERT INTO Resepti (ruokalaji, luokka, annosmaara, lahde, kuva) VALUES (:ruokalaji, :luokka, :annosmaara, :lahde, :kuva) RETURNING id');
+                ('INSERT INTO Resepti (ruokalaji, luokka, annosmaara, lahde, kuva, lisatty) VALUES (:ruokalaji, :luokka, :annosmaara, :lahde, :kuva, NOW()) RETURNING id');
 
         $query->execute(array(
             'ruokalaji' => $this->ruokalaji,
@@ -63,8 +64,34 @@ class Resepti extends BaseModel {
             'kuva' => $this->kuva));
 
         $row = $query->fetch();
-        
+
         $this->id = $row['id'];
+    }
+
+    public function update() {
+        $query = DB::connection()->prepare
+                ('UPDATE Resepti SET 
+                    ruokalaji = :ruokalaji, 
+                    luokka = :luokka, 
+                    annosmaara = :annosmaara,
+                    lahde = :lahde,
+                    kuva = :kuva
+                WHERE id = :id');
+
+        $query->execute(array(
+            'id' => $this->id,
+            'ruokalaji' => $this->ruokalaji,
+            'luokka' => $this->luokka,
+            'annosmaara' => $this->annosmaara,
+            'lahde' => $this->lahde,
+            'kuva' => $this->kuva));
+    }
+
+    public function destroy() {
+        $query = DB::connection()->prepare('DELETE FROM Resepti WHERE id = :id');
+
+        $query->execute(array(
+            'id' => $this->id));
     }
 
 }
