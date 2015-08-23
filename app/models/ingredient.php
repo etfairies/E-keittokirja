@@ -57,10 +57,6 @@ class Raaka_aine extends BaseModel {
             'hiilihydraatteja' => $this->hiilihydraatteja,
             'proteiineja' => $this->proteiineja,
             'rasvaa' => $this->rasvaa));
-
-        $row = $query->fetch();
-
-        $this->nimi = $row['nimi'];
     }
     
     public function update() {

@@ -21,14 +21,14 @@
 
     <div class="form-group">
         <label>Luokka</label><br>
-        <select name="luokka">
+        <select class="form-control" name="luokka">
             <option>Valitse...</option>
             <option value="Alkuruoat">Alkuruoat</option>
             <option value="Pääruoat">Pääruoat</option>
             <option value="Jälkiruoat">Jälkiruoat</option>
             <option value="Keitot">Keitot</option>
             <option value="Salaatit">Salaatit</option>
-            <option value="Lisukkeet">Lisukkeet</option>
+            <option value="Lisukkeet">Lisukkeet</option>           
         </select>
     </div>
 
@@ -37,34 +37,22 @@
         <input name="annosmaara" class="form-control" type="text" value="{{attributes.annosmaara}}">
     </div>
 
-    <label>Ainesosat</label>
-    <div class="form-group container-fluid">
-
-        <p>Määrä, ainesosa</p>
-        <input name="maara1" class="col-lg-1" type="text">
-        <input name="ainesosa1" class="col-lg-2" type="text">
-        <br><br>
-        <input name="maara2" class="col-xs-1" type="text">
-        <input name="ainesosa2" class="col-xs-2" type="text">
-        <br><br>
-        <input name="maara3" class="col-lg-1" type="text">
-        <input name="ainesosa3" class="col-lg-2" type="text">
-        <br><br>
-        <input name="maara4" class="col-lg-1" type="text">
-        <input name="ainesosa4" class="col-lg-2" type="text">
-        <br><br>
-        <input name="maara5" class="col-lg-1" type="text">
-        <input name="ainesosa5" class="col-lg-2" type="text">
+    <h3>Ainesosat</h3>
+    <div class="form-group">
+        <label>Määrä</label>
+        <input name="maara" class="form-control" type="text">
     </div>
 
     <div class="form-group">
-        <label>Ohjeet</label>
-        <input name="ohje1" class="form-control" type="text">
-        <input name="ohje2" class="form-control" type="text">
-        <input name="ohje3" class="form-control" type="text">
-        <input name="ohje4" class="form-control" type="text">
-        <input name="ohje5" class="form-control" type="text">
+        <label>Raaka-aine</label>
+        <select class="form-control" name="raaka_aine">
+            {% for aine in aineet %}
+            <option value="{{aine.nimi}}">{{aine.nimi}}</option>
+            {% endfor %}
+        </select>
     </div>
+
+    <h3>Lähteet</h3>
 
     <div class="form-group">
         <label>Lähde</label>

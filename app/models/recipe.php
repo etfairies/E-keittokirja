@@ -10,6 +10,8 @@ class Resepti extends BaseModel {
     }
 
     public static function all() {
+       
+        
         $query = DB::connection()->prepare('SELECT * FROM Resepti');
         $query->execute();
 
@@ -92,6 +94,32 @@ class Resepti extends BaseModel {
 
         $query->execute(array(
             'id' => $this->id));
+    }
+
+    public function search($input) {
+        $search = "%" . $input . "%";
+        
+        $query = DB::connection()->prepare("SELECT DISTINCT Resepti.id, Resepti.ruokalaji, Resepti.luokka "
+                . "FROM Resepti, Ainesosa "
+                . "WHERE Resepti.ruokalaji LIKE :search "
+                . "OR Resepti.luokka LIKE :search "
+                . "OR Ainesosa.raaka_aine LIKE :search "
+                . "AND Resepti.id = Ainesosa.resepti_id ");
+        $query->execute(array('search' => $search));
+        
+        $rows = $query->fetchAll();
+        
+        $reseptit = array();
+
+        foreach ($rows as $row) {
+            $reseptit[] = new Resepti(array(
+                'id' => $row['id'],
+                'ruokalaji' => $row['ruokalaji'],
+                'luokka' => $row['luokka']
+            ));
+        }
+
+        return $reseptit;
     }
 
 }

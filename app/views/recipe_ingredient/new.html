@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% block content %}
+
+<h1>Lisää ainesosa reseptiin {{recipe.ruokalaji}}</h1>
+
+<form method="post" action="{{base_path}}/recipe/{{recipe.id}}/recipe_ingredient">
+    <div class="form-group">
+        <label>Määrä</label>
+        <input name="maara" class="form-control" type="text">
+    </div>
+
+    <div class="form-group">
+        <label>Raaka-aine</label>
+        <select class="form-control" name="raaka_aine">
+            {% for aine in aineet %}
+            <option value="{{aine.nimi}}">{{aine.nimi}}</option>
+            {% endfor %}
+        </select>
+    </div>
+    <input name="resepti_id" value="{{recipe.id}}" type="hidden">
+    <button type="submit" class="btn btn-primary">Lisää</button>
+</form>
+
+{% endblock %}

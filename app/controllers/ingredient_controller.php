@@ -32,12 +32,13 @@ class IngredientController extends BaseController {
         
         $ingredient = new Raaka_aine($attributes);
         $errors = $ingredient->errors();
-
+              
         if (count($errors) == 0) {
             $ingredient->save();
             Redirect::to('/ingredient/' . $ingredient->nimi, array('message' => 'Raaka-aine on lisätty keittokirjaan.'));
         } else {
-            View::make('ingredient/new.html', array('errors' => $errors, 'attributes' => $attributes));
+            View::make('ingredient/new.html', 
+                array('errors' => $errors, 'attributes' => $attributes));
         }
     }
     

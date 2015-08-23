@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 {% block content %}
 
-<h1>Muokkaa reseptiä {{recipe.ruokalaji}}</h1>
+<h1>Muokkaa reseptiä {{attributes.ruokalaji}}</h1>
 
 {% if errors %}
 <div class="alert alert-danger">
@@ -35,35 +35,6 @@
     <div class="form-group">
         <label>Annosmäärä</label>
         <input name="annosmaara" class="form-control" type="text" value="{{attributes.annosmaara}}">
-    </div>
-
-    <label>Ainesosat</label>
-    <div class="form-group container-fluid">
-
-        <p>Määrä, ainesosa</p>
-        <input name="maara1" class="col-lg-1" type="text">
-        <input name="ainesosa1" class="col-lg-2" type="text">
-        <br><br>
-        <input name="maara2" class="col-xs-1" type="text">
-        <input name="ainesosa2" class="col-xs-2" type="text">
-        <br><br>
-        <input name="maara3" class="col-lg-1" type="text">
-        <input name="ainesosa3" class="col-lg-2" type="text">
-        <br><br>
-        <input name="maara4" class="col-lg-1" type="text">
-        <input name="ainesosa4" class="col-lg-2" type="text">
-        <br><br>
-        <input name="maara5" class="col-lg-1" type="text">
-        <input name="ainesosa5" class="col-lg-2" type="text">
-    </div>
-
-    <div class="form-group">
-        <label>Ohjeet</label>
-        <input name="ohje1" class="form-control" type="text">
-        <input name="ohje2" class="form-control" type="text">
-        <input name="ohje3" class="form-control" type="text">
-        <input name="ohje4" class="form-control" type="text">
-        <input name="ohje5" class="form-control" type="text">
     </div>
 
     <div class="form-group">

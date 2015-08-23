@@ -3,7 +3,7 @@
 //Reseptin reitit
 
 $routes->get('/', function() {
-    RecipeController::index();
+    RecipeController::images();
 });
 
 $routes->get('/recipe', function() {
@@ -78,6 +78,22 @@ $routes->post('/logout', function(){
     UserController::logout();
 });
 
+// Ainesosan reitit
+
+$routes->get('/recipe/:id/recipe_ingredient', function($id){
+    RecipeIngredientController::create($id);
+});
+
+$routes->post('/recipe/:id/recipe_ingredient', function($id){
+    RecipeIngredientController::storeNew($id);
+});
+
+
+// Haun reitit
+
+$routes->post('/search', function() {
+    SearchController::results();
+});
 
 // HelloWorld -reitit
 

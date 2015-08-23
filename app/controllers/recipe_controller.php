@@ -3,19 +3,29 @@
 class RecipeController extends BaseController {
 
     public static function index() {
+              
         $recipes = Resepti::all();
         View::make('recipe/index.html', array('recipes' => $recipes));
     }
 
+    public static function images() {
+        $recipes = Resepti::all();
+        if (count($recipes) > 10) {
+            array_slice($recipes, 10);
+        }
+        View::make('recipe/frontpage.html', array('recipes' => $recipes));
+    }
+    
     public static function show($id) {
         $recipe = Resepti::find($id);
-        View::make('recipe/show.html', array('recipe' => $recipe));
+        $ainesosat = Ainesosa::allRelatedToRecipe($id);
+        View::make('recipe/show.html', array('recipe' => $recipe, 'ainesosat' => $ainesosat));
     }
 
     public static function create() {
         self::check_logged_in();
-
-        View::make('recipe/new.html');
+        $aineet = Raaka_aine::all();
+        View::make('recipe/new.html', array('aineet' => $aineet));
     }
 
     public static function store() {
@@ -36,6 +46,8 @@ class RecipeController extends BaseController {
 
         if (count($errors) == 0) {
             $recipe->save();
+            RecipeIngredientController::store($recipe->id, $params['maara'], $params['raaka_aine']);
+
             Redirect::to('/recipe/' . $recipe->id, array('message' => 'Resepti on lisätty keittokirjaan.'));
         } else {
             View::make('recipe/new.html', array('errors' => $errors, 'attributes' => $attributes));
@@ -46,7 +58,9 @@ class RecipeController extends BaseController {
         self::check_logged_in();
 
         $recipe = Resepti::find($id);
-        View::make('recipe/edit.html', array('attributes' => $recipe));
+        $ainesosat = Ainesosa::allRelatedToRecipe($id);
+        $aineet = Raaka_aine::all();
+        View::make('recipe/edit.html', array('attributes' => $recipe, 'ainesosat' => $ainesosat, 'aineet' => $aineet));
     }
 
     public static function update($id) {
@@ -70,6 +84,7 @@ class RecipeController extends BaseController {
             View::make('recipe/edit.html', array('errors' => $errors, 'attributes' => $attributes));
         } else {
             $recipe->update();
+            
             Redirect::to('/recipe/' . $recipe->id, array('message' => 'Reseptiä on muokattu onnistuneesti.'));
         }
     }

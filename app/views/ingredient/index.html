@@ -1,5 +1,7 @@
 {% extends "base.html" %}
 {% block content %}
+{% import "macros/forms.html" as forms %}
+
 <h1>E-keittokirja</h1>
 <h2>Raaka-aineet</h2>
 
@@ -8,9 +10,7 @@
 {% endif %}
 
 {% if user_logged_in %}
-<p>
-    <a href="{{base_path}}/ingredient/new" class="btn btn-default">Lisää raaka-aine</a>
-</p>
+{{forms.add_button("#{base_path}/ingredient/new", "raaka-aine")}}
 {% endif %}
 
 <table class="table table-condensed">
@@ -33,7 +33,7 @@
             <td>{{ingredient.proteiineja}}</td>
             <td>{{ingredient.rasvaa}}</td>
             {% if user_logged_in %}
-            <td><a class='btn btn-default btn-sm btn-info' href='{{base_path}}/ingredient/{{ingredient.nimi}}/edit'>Muokkaa</a></td>
+            <td>{{forms.list_edit_button("#{base_path}/ingredient/#{ingredient.nimi}/edit")}}</td>
             {% endif %}
         </tr>
         {% endfor %}

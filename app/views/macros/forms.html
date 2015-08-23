@@ -1,5 +1,19 @@
 {% macro destroy_button(action, text) %}
-<form method="post" action="{{action}}" style="display: inline-block;">
+<form method="post" action="{{action}}" class="destroy-form" data-confirm="Oletko varma, että haluat poistaa kohteen?" style="display: inline-block;">
     <button type="submit" class="btn btn-danger">{{text|default('Poista')}}</button>
 </form>
+{% endmacro %}
+
+{% macro edit_button(url, text) %}
+<a href="{{url}}" class="btn btn-default">{{text|default('Muokkaa')}}</a>
+{% endmacro %}
+
+{% macro list_edit_button(url, text) %}
+<a href="{{url}}" class="btn btn-sm btn-info">{{text|default('Muokkaa')}}</a>
+{% endmacro %}
+
+{% macro add_button(url, text) %}
+<p>
+    <a href="{{url}}" class="btn btn-default">Lisää {{text}}</a>
+</p>
 {% endmacro %}
