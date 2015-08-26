@@ -40,10 +40,12 @@ class IngredientController extends BaseController {
             $ingredient->save();
             Redirect::to('/ingredient/' . $ingredient->nimi, 
                     array('message' => 'Raaka-aine on lisätty keittokirjaan.'));
+        } else if ($duplicate != null){
+            View::make('ingredient/new.html', 
+                array('attributes' => $attributes, 'message' => 'Raaka-aine on jo tietokannassa.'));
         } else {
             View::make('ingredient/new.html', 
-                array('errors' => $errors, 'attributes' => $attributes, 
-                    'message' => 'Raaka-aine on jo tietokannassa.'));
+                array('errors' => $errors, 'attributes' => $attributes));
         }
     }
     
@@ -71,11 +73,13 @@ class IngredientController extends BaseController {
         $errors = $aine->errors();
         
         if(count($errors) > 0){
-            View::make('ingredient/edit.html', array('errors' => $errors, 'attributes' => $attributes));
+            View::make('ingredient/edit.html', array('errors' => $errors, 
+                'attributes' => $attributes));
         } else {
             $aine->update();
             
-            Redirect::to('/ingredient/' . $aine->nimi, array('message' => 'Raaka-ainetta on muokattu onnistuneesti.'));
+            Redirect::to('/ingredient/' . $aine->nimi, 
+                    array('message' => 'Raaka-ainetta on muokattu onnistuneesti.'));
         }
     }
     

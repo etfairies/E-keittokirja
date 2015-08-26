@@ -57,7 +57,9 @@ class RecipeController extends BaseController {
 
             Redirect::to('/recipe/' . $recipe->id, array('message' => 'Resepti on lisätty keittokirjaan.'));
         } else {
-            View::make('recipe/new.html', array('errors' => $errors, 'attributes' => $attributes, 'ingredients' => $ingredients, 'aineet' => $aineet));
+            View::make('recipe/new.html', 
+                    array('errors' => $errors, 'attributes' => $attributes, 
+                        'ingredients' => $ingredients, 'aineet' => $aineet));
         }
     }
 
@@ -67,7 +69,8 @@ class RecipeController extends BaseController {
         $recipe = Resepti::find($id);
         $ainesosat = Ainesosa::allRelatedToRecipe($id);
         $aineet = Raaka_aine::all();
-        View::make('recipe/edit.html', array('attributes' => $recipe, 'ainesosat' => $ainesosat, 'aineet' => $aineet));
+        View::make('recipe/edit.html', 
+                array('attributes' => $recipe, 'ainesosat' => $ainesosat, 'aineet' => $aineet));
     }
 
     public static function update($id) {

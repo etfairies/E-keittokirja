@@ -28,7 +28,8 @@ class Ainesosa extends BaseModel {
 
     public function save() {
         $query = DB::connection()->prepare
-                ('INSERT INTO Ainesosa (resepti_id, maara, raaka_aine) VALUES (:resepti_id, :maara, :raaka_aine)');
+                ('INSERT INTO Ainesosa (resepti_id, maara, raaka_aine) '
+                . 'VALUES (:resepti_id, :maara, :raaka_aine)');
 
         $query->execute(array(
             'resepti_id' => $this->resepti_id,

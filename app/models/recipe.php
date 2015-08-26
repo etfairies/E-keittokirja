@@ -56,7 +56,8 @@ class Resepti extends BaseModel {
 
     public function save() {
         $query = DB::connection()->prepare
-                ('INSERT INTO Resepti (ruokalaji, luokka, annosmaara, lahde, kuva, lisatty) VALUES (:ruokalaji, :luokka, :annosmaara, :lahde, :kuva, NOW()) RETURNING id');
+                ('INSERT INTO Resepti (ruokalaji, luokka, annosmaara, lahde, kuva, lisatty) '
+                . 'VALUES (:ruokalaji, :luokka, :annosmaara, :lahde, :kuva, NOW()) RETURNING id');
 
         $query->execute(array(
             'ruokalaji' => $this->ruokalaji,

@@ -26,7 +26,8 @@ class User extends BaseModel {
     }
     
     public static function authenticate($nimi, $salasana) {
-        $query = DB::connection()->prepare('SELECT * FROM Kokki WHERE nimi = :nimi AND salasana = :salasana LIMIT 1', array('nimi' => $nimi, 'salasana' => $salasana));
+        $query = DB::connection()->prepare('SELECT * FROM Kokki WHERE nimi = :nimi '
+                . 'AND salasana = :salasana LIMIT 1', array('nimi' => $nimi, 'salasana' => $salasana));
         $query->execute(array(
             'nimi' => $nimi,
             'salasana' => $salasana

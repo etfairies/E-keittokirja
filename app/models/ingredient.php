@@ -6,7 +6,8 @@ class Raaka_aine extends BaseModel {
 
     public function __construct($attributes) {
         parent::__construct($attributes);
-        $this->validators = array('validate_nimi', 'validate_energia', 'validate_hiili', 'validate_prote', 'validate_rasva');
+        $this->validators = 
+                array('validate_nimi', 'validate_energia', 'validate_hiili', 'validate_prote', 'validate_rasva');
     }
 
     public static function all() {
@@ -49,7 +50,8 @@ class Raaka_aine extends BaseModel {
 
     public function save() {
         $query = DB::connection()->prepare
-                ('INSERT INTO Raaka_aine (nimi, energiaa, hiilihydraatteja, proteiineja, rasvaa) VALUES (:nimi, :energiaa, :hiilihydraatteja, :proteiineja, :rasvaa) RETURNING nimi');
+                ('INSERT INTO Raaka_aine (nimi, energiaa, hiilihydraatteja, proteiineja, rasvaa) '
+                . 'VALUES (:nimi, :energiaa, :hiilihydraatteja, :proteiineja, :rasvaa) RETURNING nimi');
 
         $query->execute(array(
             'nimi' => $this->nimi,
