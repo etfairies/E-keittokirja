@@ -3,7 +3,7 @@
 class RecipeController extends BaseController {
 
     public static function index() {
-              
+
         $recipes = Resepti::all();
         View::make('recipe/index.html', array('recipes' => $recipes));
     }
@@ -15,7 +15,7 @@ class RecipeController extends BaseController {
         }
         View::make('recipe/frontpage.html', array('recipes' => $recipes));
     }
-    
+
     public static function show($id) {
         $recipe = Resepti::find($id);
         $ainesosat = Ainesosa::allRelatedToRecipe($id);
@@ -38,9 +38,16 @@ class RecipeController extends BaseController {
             'luokka' => $params['luokka'],
             'annosmaara' => $params['annosmaara'],
             'lahde' => $params['lahde'],
-            'kuva' => $params['kuva']
+            'kuva' => $params['kuva'],
         );
-
+        
+        $ingredients = array(
+            'maara' => $params['maara'],
+            'raaka_aine' => $params['raaka_aine']
+        );
+        
+        $aineet = Raaka_aine::all();
+        
         $recipe = new Resepti($attributes);
         $errors = $recipe->errors();
 
@@ -50,7 +57,7 @@ class RecipeController extends BaseController {
 
             Redirect::to('/recipe/' . $recipe->id, array('message' => 'Resepti on lisätty keittokirjaan.'));
         } else {
-            View::make('recipe/new.html', array('errors' => $errors, 'attributes' => $attributes));
+            View::make('recipe/new.html', array('errors' => $errors, 'attributes' => $attributes, 'ingredients' => $ingredients, 'aineet' => $aineet));
         }
     }
 
@@ -84,7 +91,7 @@ class RecipeController extends BaseController {
             View::make('recipe/edit.html', array('errors' => $errors, 'attributes' => $attributes));
         } else {
             $recipe->update();
-            
+
             Redirect::to('/recipe/' . $recipe->id, array('message' => 'Reseptiä on muokattu onnistuneesti.'));
         }
     }

@@ -22,6 +22,7 @@ class IngredientController extends BaseController {
         
         $params = $_POST;
 
+
         $attributes = array(
             'nimi' => $params['nimi'],
             'energiaa' => $params['energiaa'],
@@ -31,14 +32,18 @@ class IngredientController extends BaseController {
         );
         
         $ingredient = new Raaka_aine($attributes);
+        $duplicate = Raaka_aine::find($params['nimi']);
+        
         $errors = $ingredient->errors();
               
-        if (count($errors) == 0) {
+        if (count($errors) == 0 && $duplicate == null) {
             $ingredient->save();
-            Redirect::to('/ingredient/' . $ingredient->nimi, array('message' => 'Raaka-aine on lisätty keittokirjaan.'));
+            Redirect::to('/ingredient/' . $ingredient->nimi, 
+                    array('message' => 'Raaka-aine on lisätty keittokirjaan.'));
         } else {
             View::make('ingredient/new.html', 
-                array('errors' => $errors, 'attributes' => $attributes));
+                array('errors' => $errors, 'attributes' => $attributes, 
+                    'message' => 'Raaka-aine on jo tietokannassa.'));
         }
     }
     

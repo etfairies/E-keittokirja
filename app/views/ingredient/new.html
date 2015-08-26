@@ -3,7 +3,10 @@
 
 <h1>Lisää uusi raaka-aine</h1>
 
-{% if errors %}
+{% if message %}
+<p class="alert alert-success">{{message}}</p>
+
+{% elseif errors %}
 <div class="alert alert-danger">
     <ul>
         {% for error in errors %}
@@ -12,6 +15,8 @@
     </ul>
 </div>
 {% endif %}
+
+
 
 <form method="post" action="{{base_path}}/ingredient">
     <div class="form-group">

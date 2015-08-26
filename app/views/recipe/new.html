@@ -11,7 +11,7 @@
         {% endfor %}
     </ul>
 </div>
-{% endif %}
+
 
 <form method="post" action="{{base_path}}/recipe">
     <div class="form-group">
@@ -22,7 +22,11 @@
     <div class="form-group">
         <label>Luokka</label><br>
         <select class="form-control" name="luokka">
+            {% if attributes.luokka == null %}
             <option>Valitse...</option>
+            {% else %}
+            <option value="{{attributes.luokka}}">{{attributes.luokka}}</option>
+            {% endif %}
             <option value="Alkuruoat">Alkuruoat</option>
             <option value="Pääruoat">Pääruoat</option>
             <option value="Jälkiruoat">Jälkiruoat</option>
@@ -40,12 +44,15 @@
     <h3>Ainesosat</h3>
     <div class="form-group">
         <label>Määrä</label>
-        <input name="maara" class="form-control" type="text">
+        <input name="maara" class="form-control" type="text" value="{{ingredients.maara}}">
     </div>
 
     <div class="form-group">
         <label>Raaka-aine</label>
         <select class="form-control" name="raaka_aine">
+            {% if ingredients.raaka_aine != null %}
+            <option value="{{ingredients.raaka_aine}}">{{ingredients.raaka_aine}}</option>
+            {% endif %}
             {% for aine in aineet %}
             <option value="{{aine.nimi}}">{{aine.nimi}}</option>
             {% endfor %}
