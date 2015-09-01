@@ -19,7 +19,7 @@ class IngredientController extends BaseController {
 
     public static function store() {
         self::check_logged_in();
-        
+
         $params = $_POST;
 
 
@@ -30,37 +30,34 @@ class IngredientController extends BaseController {
             'proteiineja' => $params['proteiineja'],
             'rasvaa' => $params['rasvaa']
         );
-        
+
         $ingredient = new Raaka_aine($attributes);
         $duplicate = Raaka_aine::find($params['nimi']);
-        
+
         $errors = $ingredient->errors();
-              
+
         if (count($errors) == 0 && $duplicate == null) {
             $ingredient->save();
-            Redirect::to('/ingredient/' . $ingredient->nimi, 
-                    array('message' => 'Raaka-aine on lisätty keittokirjaan.'));
-        } else if ($duplicate != null){
-            View::make('ingredient/new.html', 
-                array('attributes' => $attributes, 'message' => 'Raaka-aine on jo tietokannassa.'));
+            Redirect::to('/ingredient/' . $ingredient->nimi, array('message' => 'Raaka-aine on lisätty keittokirjaan.'));
+        } else if ($duplicate != null) {
+            View::make('ingredient/new.html', array('attributes' => $attributes, 'message' => 'Raaka-aine on jo tietokannassa.'));
         } else {
-            View::make('ingredient/new.html', 
-                array('errors' => $errors, 'attributes' => $attributes));
+            View::make('ingredient/new.html', array('errors' => $errors, 'attributes' => $attributes));
         }
     }
-    
-    public static function edit($nimi){ 
+
+    public static function edit($nimi) {
         self::check_logged_in();
-        
+
         $aine = Raaka_aine::find($nimi);
         View::make('ingredient/edit.html', array('attributes' => $aine));
     }
-    
-    public static function update($nimi){
+
+    public static function update($nimi) {
         self::check_logged_in();
-        
+
         $params = $_POST;
-        
+
         $attributes = array(
             'nimi' => $nimi,
             'energiaa' => $params['energiaa'],
@@ -68,27 +65,27 @@ class IngredientController extends BaseController {
             'proteiineja' => $params['proteiineja'],
             'rasvaa' => $params['rasvaa']
         );
-        
+
         $aine = new Raaka_aine($attributes);
         $errors = $aine->errors();
-        
-        if(count($errors) > 0){
-            View::make('ingredient/edit.html', array('errors' => $errors, 
+
+        if (count($errors) > 0) {
+            View::make('ingredient/edit.html', array('errors' => $errors,
                 'attributes' => $attributes));
         } else {
             $aine->update();
-            
-            Redirect::to('/ingredient/' . $aine->nimi, 
-                    array('message' => 'Raaka-ainetta on muokattu onnistuneesti.'));
+
+            Redirect::to('/ingredient/' . $aine->nimi, array('message' => 'Raaka-ainetta on muokattu onnistuneesti.'));
         }
     }
-    
-    public static function destroy($nimi){
+
+    public static function destroy($nimi) {
         self::check_logged_in();
-        
+
+
         $aine = new Raaka_aine(array('nimi' => $nimi));
+
         $aine->destroy();
-        
         Redirect::to('/ingredient', array('message' => 'Raaka-aine on poistettu onnistuneesti.'));
     }
 

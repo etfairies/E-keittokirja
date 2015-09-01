@@ -104,6 +104,8 @@ class RecipeController extends BaseController {
 
         $recipe = new Resepti(array('id' => $id));
         $recipe->destroy();
+        
+        
 
         Redirect::to('/recipe', array('message' => 'Resepti on poistettu onnistuneesti.'));
     }

@@ -81,8 +81,7 @@ class Raaka_aine extends BaseModel {
     public function destroy() {
         $query = DB::connection()->prepare('DELETE FROM Raaka_aine WHERE nimi = :nimi');
         
-        $query->execute(array(
-            'nimi' => $this->nimi));
+        $query->execute(array('nimi' => $this->nimi));
     }
 
 }

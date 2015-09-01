@@ -92,10 +92,12 @@ class Resepti extends BaseModel {
 
     public function destroy() {
         $query = DB::connection()->prepare('DELETE FROM Resepti WHERE id = :id');
-
+        
         $query->execute(array(
             'id' => $this->id));
+        
     }
+    
 
     public function search($input) {
         $search = "%" . $input . "%";

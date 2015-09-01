@@ -31,7 +31,7 @@ rasvaa DECIMAL
 );
 
 CREATE TABLE Ainesosa(
-resepti_id SERIAL REFERENCES Resepti(id),
+resepti_id SERIAL REFERENCES Resepti(id) ON DELETE CASCADE,
 maara varchar(15),
-raaka_aine varchar(20) REFERENCES Raaka_aine(nimi)
+raaka_aine varchar(20) REFERENCES Raaka_aine(nimi) ON DELETE CASCADE
 );

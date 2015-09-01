@@ -39,5 +39,9 @@ class RecipeIngredientController extends BaseController {
         $ainesosa->save(); 
         Redirect::to('/recipe/' . $ainesosa->resepti_id, array('message' => 'Ainesosa on lisätty reseptiin.'));
     }
+    
+    public static function destroy() {
+        
+    }
 
 }
